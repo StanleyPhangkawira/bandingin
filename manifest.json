@@ -1,7 +1,7 @@
 {
   "name": "Bandingin",
   "short_name": "Bandingin",
-  "start_url": "/bandingin.html",
+  "start_url": "./bandingin.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#9333ea",
