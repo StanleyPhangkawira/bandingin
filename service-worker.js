@@ -5,9 +5,9 @@ self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll([
-        "/bandingin.html",
-        "/manifest.json",
-        "/icon.png"
+        "./bandingin.html",
+        "./manifest.json",
+        "./icon.png"
       ]);
     })
   );
