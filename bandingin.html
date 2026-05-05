@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandingin</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+    <link rel="manifest" href="manifest.json">
+
+</head>
+<body class="w-full p-4">
+
+    <h1 class="text-2xl">Bandingin</h1>
+    <br>
+    <div class="flex w-full">
+        <div class="w-full">
+            <label for="produk1">Produk 1</label><br>
+            <input type="number" name="produk1" id="produk1" placeholder="Produk 1" class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent shadow-lg p-2 rounded-sm w-full"> 
+            <input type="number" name="harga1" id="harga1" placeholder="Harga 1" class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent shadow-lg p-2 rounded-sm w-full"> 
+        </div>
+        <div class="w-full">
+            <label for="produk2">Produk 2</label><br>
+            <input type="number" name="produk2" id="produk2" placeholder="Produk 2" class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent shadow-lg p-2 rounded-sm w-full"> 
+            <input type="number" name="harga2" id="harga2" placeholder="Harga 2" class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent shadow-lg p-2 rounded-sm w-full"> 
+        </div>
+    </div>
+
+
+    <select class="border border-transparent focus:ring-2 focus:ring-purple-600 focus:border-transparent shadow-lg p-2 rounded-sm" id="satuan">
+            <option value="mililiter">mililiter</option>
+            <option value="gram">gram</option>
+    </select>
+    
+
+    <button class="bg-purple-600 rounded-sm p-2 text-white shadow-lg hover:bg-purple-800 hover:cursor-pointer" onclick="count()">Submit</button>
+    <p id="hasil"></p>
+    <script>
+        function count(){
+            const produk1 = document.getElementById("produk1").value;
+            const produk2 = document.getElementById("produk2").value;
+            const harga1 = document.getElementById("harga1").value;
+            const harga2 = document.getElementById("harga2").value;
+
+            const banding1 = harga1/produk1;
+            const banding2 = harga2/produk2;
+
+            let hasil_banding = "";
+            if(banding2>banding1){
+                const beda = -1*(banding1-banding2) / banding1;
+                hasil_banding = "Produk 1 lebih murah "+Math.round(beda * 100)+"%";
+            }
+            else if(banding1>banding2){
+                const beda = -1*(banding2-banding1) / banding2;
+                hasil_banding = "Produk 2 lebih murah "+Math.round(beda * 100)+"%";
+            }else if(banding1==banding2){
+                hasil_banding = "Kedua produk harganya setara";
+            }
+
+            let satuan = document.getElementById("satuan").value;
+            let hasil = hasil_banding+"\nProduk 1 seharga "+Math.round(banding1 * 100)/100+" per "+satuan+"\nProduk 2 seharga "+Math.round(banding2 * 100)/100+" per "+satuan;
+            document.getElementById("hasil").innerText = hasil;
+        }
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+            .then(() => console.log("Service Worker Registered"));
+        }
+    </script>
+</body>
+</html>
